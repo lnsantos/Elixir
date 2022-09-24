@@ -3,11 +3,14 @@ defmodule FizzBuzz do
   def get_file_content(filename), do: filename |> File.read() |> transform_list_number()
 
   def transform_list_number({:ok, result}) do
-    result
+    data = result
     |> String.split(",")
     |> Enum.map(&convert_from_string_to_numbers/1)
+    
+    {:ok, data}
   end 
-  def transform_list_number({:error, reason}), do: "Error in read file : #{reason}" 
+
+  def transform_list_number({:error, reason}), do: {:error, "Error in read file: #{reason}"}
 
   def convert_from_string_to_numbers(result) do
     result
