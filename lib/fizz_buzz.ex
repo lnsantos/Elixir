@@ -1,10 +1,13 @@
 defmodule FizzBuzz do
   
-  def get_file_content(filename) do
-    filename |> File.read() |> handler_filename()
-  end 
+  def get_file_content(filename), do: filename |> File.read() |> transform_list_number()
 
-  def handler_filename({:ok, result}), do: result 
-  def handler_filename({:error, reason}), do: reason 
+
+  def transform_list_number({:ok, result}) do
+    result
+    |> String.split(",")
+    |> Enum.map(&String.to_integer/1)
+  end 
+  def transform_list_number({:error, reason}), do: "Error in read file : #{reason}" 
 
 end
