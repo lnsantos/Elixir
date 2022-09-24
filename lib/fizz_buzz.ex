@@ -1,18 +1,10 @@
 defmodule FizzBuzz do
-  @moduledoc """
-  Documentation for `FizzBuzz`.
-  """
+  
+  def get_file_content(filename) do
+    filename |> File.read() |> handler_filename()
+  end 
 
-  @doc """
-  Hello world.
+  def handler_filename({:ok, result}), do: result 
+  def handler_filename({:error, reason}), do: reason 
 
-  ## Examples
-
-      iex> FizzBuzz.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
